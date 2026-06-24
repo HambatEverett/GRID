@@ -24,15 +24,12 @@ local function main()
         if tokens[2] then
 
         if tokens[2]:lower() == "trash" then
-          print("hi trasher")
-          if tokens[3] and tokens[4] then -- THIS IS ALL BROKEN, ONLY MAINHAND TRASHER WORKS SORRYY
-            print("minecraft:"..table.concat(tokens, "_", 4):lower())
-
-            print("FOORRRR")
+          print("Trash cmnd")
+          if tokens[3] and tokens[4] then
+            print("\_ Inv check")
             for i, item in pairs(invbox[whitelist[username]].getItems()) do
               if item.name == "minecraft:"..table.concat(tokens, "_", 4):lower() then
-                invbox[whitelist[username]].removeItemFromPlayer("left", {name="minecraft:"..table.concat(tokens, "_", 4):lower(), toslot=1, fromslot=i, count=tonumber(tokens[3])})
-                print("removingx (minecraft:"..table.concat(tokens, "_", 4):lower().." "..tokens[3].." "..item.slot.." "..i)
+                invbox[whitelist[username]].removeItemFromPlayer("right", {name=item.name, toslot=1, fromslot=item.slot, count=tonumber(tokens[3])})
                 chatbox.sendMessageToPlayer("Removing "..item.displayName.." from inventory. :checkmark:",username,"Grid")
                 break
               end
@@ -50,7 +47,7 @@ local function main()
         elseif tokens[2]:lower() == "empty" then
           chatbox.sendMessageToPlayer("Emptying trash...",username,"Grid")
           rs.setOutput("back", false)
-          sleep(12)
+          sleep(8)
           rs.setOutput("back", true)
           chatbox.sendMessageToPlayer("Trash emptied! :checkmark:",username,"Grid")
         else
