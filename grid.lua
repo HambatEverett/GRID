@@ -26,7 +26,7 @@ local function main()
         if tokens[2]:lower() == "trash" then
           print("Trash cmnd")
           if tokens[3] and tokens[4] then
-            print("\_ Inv check")
+            print("\\_ Inv check")
             for i, item in pairs(invbox[whitelist[username]].getItems()) do
               if item.name == "minecraft:"..table.concat(tokens, "_", 4):lower() then
                 invbox[whitelist[username]].removeItemFromPlayer("right", {name=item.name, toslot=1, fromslot=item.slot, count=tonumber(tokens[3])})
