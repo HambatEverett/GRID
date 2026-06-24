@@ -1,5 +1,6 @@
 local chatbox = peripheral.find("chat_box")
 local invbox = {peripheral.find("inventory_manager")}
+local barrel = {peripheral.find("minecraft:barrel")}
 
 local event, username, message, uuid, isHidden, messageUtf8
 local tokens = {}
@@ -50,6 +51,8 @@ local function main()
           sleep(8)
           rs.setOutput("back", true)
           chatbox.sendMessageToPlayer("Trash emptied! :checkmark:",username,"Grid")
+        elseif tokens[2]:lower() == "undo" then
+          invbox[whitelist[username]].addItemToPlayer("right", {name=barrel[whitelist[username]].getItemDetail(1).name, toslot=98, fromslot=1, count=64})
         else
           chatbox.sendMessageToPlayer("Unknown command :x:",username,"Grid")
         end
